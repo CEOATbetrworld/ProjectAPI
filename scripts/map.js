@@ -68,7 +68,8 @@ function initMap() {
 
         var marker = new google.maps.Marker({
             position: location,
-            map: map
+            map: map,
+            title:loc.name
         });
         markers.push(marker);
         bounds.extend(myLatLng);
@@ -86,7 +87,7 @@ function initMap() {
                 google.maps.event.addListener(marker, "click", function (e) {
                     //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
                   
-                    infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + "i did it"+ "</div>");
+                    infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + marker.title + "</div>");
                     infoWindow.open(map, marker);
                 });
             })(mark);

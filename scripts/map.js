@@ -26,13 +26,20 @@ var Locations = [{
     }
 ];
 
-let ViewModel = function() {
+var ViewModel = function() {
 
     this.locNames = ko.observableArray(Locations);
 
 }
 
 ko.applyBindings(new ViewModel());
+
+///////////////ERROR HANDLING FOR MAP API///////////////
+
+var loadFailed = function(){
+    alert("Failed to load Google Maps API without this, this web app is powerless :(");
+}
+
 ////////////////////////Map////////////////////////
 function initMap() {
 
@@ -44,7 +51,8 @@ function initMap() {
         }
 
     });
-
+    
+    var markers = [];
     var bounds = new google.maps.LatLngBounds();
 
     for (let loc of Locations) {
@@ -59,14 +67,11 @@ function initMap() {
             position: location,
             map: map
         });
+        markers.push(marker);
         bounds.extend(myLatLng);
 
     }
-    marker.addListener('click', function() {
-        infowindow.open(map, marker);
-    });
-
-
+    console.log(typeof markers[0]);
     map.fitBounds(bounds);
 
 }

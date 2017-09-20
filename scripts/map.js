@@ -54,6 +54,9 @@ function initMap() {
     
     var markers = [];
     var bounds = new google.maps.LatLngBounds();
+      var infoWindow = new google.maps.InfoWindow({
+          
+        });
 
     for (let loc of Locations) {
 
@@ -70,8 +73,23 @@ function initMap() {
         markers.push(marker);
         bounds.extend(myLatLng);
 
+         var infoWindow = new google.maps.InfoWindow({
+          
+        });
+
     }
-    console.log(typeof markers[0]);
+    console.log(markers[0]);
     map.fitBounds(bounds);
+
+    for(mark of markers){
+    (function (marker) {
+                google.maps.event.addListener(marker, "click", function (e) {
+                    //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
+                  
+                    infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + "i did it"+ "</div>");
+                    infoWindow.open(map, marker);
+                });
+            })(mark);
+        }
 
 }

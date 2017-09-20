@@ -1,6 +1,6 @@
 # Udacity Project API
 
-### Please to test the app go to this [link](https://ceoatbetrworld.github.io/ProjectAPI/) to avoid API key errors.
+###To test the app go to this [link](https://ceoatbetrworld.github.io/ProjectAPI/).
 
 Fun single page app shows you famous shopping mall and tourist place from in city jaipur. 
 

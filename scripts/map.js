@@ -19,6 +19,18 @@ var Locations = [{
     name: "Jaigarh fort",
     lat: 26.9850925,
     lng: 75.8433988
+},{
+    name: "Hawa Mahal",
+    lat: 26.9239411,
+    lng: 75.8245498
+},{
+    name: "Jantar Mantar",
+    lat: 26.9247668,
+    lng: 75.822366
+},{
+    name: "Birla Mandir",
+    lat: 26.8921657,
+    lng: 75.8133356
 }];
 
 var ViewModel = function() {

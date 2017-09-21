@@ -41,12 +41,13 @@ var loadFailed = function(){
 }
 
 ////////////////////////////FETCH DATA USING FOURSQARE API////////////////
-var apiData = ["hey","hi","hello","bye","sul"];
+var apiData = [];
+for(loca of Locations){
 fetch('https://api.foursquare.com/v2/venues/search?client_id=' +
-            '4ZUMADF2SHRKLWPG1BTNJCD5QAIQMIGOTUN5VLKTEXKFDD52' +
-            '&client_secret=1K5XQUWKNQ5BO5WEQ3FUTPB53FW0SP2N04NMTJGVU00Q1DST' +
-            '4WZUYZGWR&v=20130815' + '&ll=' + Locations[0].lat + ',' +
-            Locations[0].lng + '&query=\'' + Locations[0].name + '\'&limit=1')  
+            'PVIQJ5PWWLE3UMRRNDZ3X1SWVFEHIXNRH12HCXEF0D0J5GOQ&' +
+            '&client_secret=YJ0TST4PGCM41UPONGMIEW2ZKOP04XAX2SJS' +
+            'MXGYI3DYMTEU&v=20161209' + '&ll=' + loca.lat + ',' +
+            loca.lng + '&query=\'' + loca.name + '\'&limit=1')  
   .then(  
     function(response) {  
       if (response.status !== 200) {  
@@ -56,11 +57,30 @@ fetch('https://api.foursquare.com/v2/venues/search?client_id=' +
       }
 
       // Examine the text in the response  
-      response.json().then(function(data) {  
-        console.log(data);  
+      response.json().then(function(data) {   
+        if(data.response.venues[0].contact.formattedPhone !== undefined){
+        apiData.push({
+        name: data.response.venues[0].name,
+        phone : data.response.venues[0].contact.formattedPhone,
+        address : data.response.venues[0].location.formattedAddress
+      });}
+      else{
+        apiData.push({
+        name: data.response.venues[0].name,
+        phone : "Phone number not available",
+        address : data.response.venues[0].location.formattedAddress
+      });
+
+      }   
       });  
+   
     }  
-  )  
+  )  }
+
+  console.log(apiData);
+
+
+
 
 ////////////////////////Map////////////////////////
 function initMap() {
@@ -109,7 +129,7 @@ function initMap() {
                 google.maps.event.addListener(marker, "click", function (e) {
                     //Wraped the content inside an HTML DIV in order to set height and width of InfoWindow.
                   
-                    infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + data + "</div>");
+                    infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + apiData[i].name + "</div>");
                     infoWindow.open(map, marker);
                 });
             })(markers[i],apiData[i]);

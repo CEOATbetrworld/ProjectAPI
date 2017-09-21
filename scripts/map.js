@@ -41,7 +41,7 @@ var ViewModel = function() {
 
 ko.applyBindings(new ViewModel());
 
-///////////////ERROR HANDLING FOR MAP API///////////////
+///////////////ERROR HANDLING FOR MAP API////////////////
 
 var loadFailed = function() {
     alert("Failed to load Google Maps API without this, this web app is powerless :(");

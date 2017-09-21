@@ -123,7 +123,7 @@ function initMap() {
             google.maps.event.addListener(marker, "click", function(e) {
                 //Wraped the content inside an HTML DIV in order to set height and width of InfoWindow.
 
-                infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + apiData[i].name + "</div>");
+                infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + marker.title + "</div>");
                 infoWindow.open(map, marker);
             });
         })(markers[i], apiData[i]);

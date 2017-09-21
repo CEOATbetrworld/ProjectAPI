@@ -40,6 +40,28 @@ var loadFailed = function(){
     alert("Failed to load Google Maps API without this, this web app is powerless :(");
 }
 
+////////////////////////////FETCH DATA USING FOURSQARE API////////////////
+var apiData = ["hey","hi","hello","bye","sul"];
+fetch('https://api.foursquare.com/v2/venues/search?client_id=' +
+            '4ZUMADF2SHRKLWPG1BTNJCD5QAIQMIGOTUN5VLKTEXKFDD52' +
+            '&client_secret=1K5XQUWKNQ5BO5WEQ3FUTPB53FW0SP2N04NMTJGVU00Q1DST' +
+            '4WZUYZGWR&v=20130815' + '&ll=' + Locations[0].lat + ',' +
+            Locations[0].lng + '&query=\'' + Locations[0].name + '\'&limit=1')  
+  .then(  
+    function(response) {  
+      if (response.status !== 200) {  
+        console.log('Looks like there was a problem. Status Code: ' +  
+          response.status);  
+        return;  
+      }
+
+      // Examine the text in the response  
+      response.json().then(function(data) {  
+        console.log(data);  
+      });  
+    }  
+  )  
+
 ////////////////////////Map////////////////////////
 function initMap() {
 
@@ -82,15 +104,15 @@ function initMap() {
     console.log(markers[0]);
     map.fitBounds(bounds);
 
-    for(mark of markers){
-    (function (marker) {
+    for(var i = 0 ; i <markers.length ; i++){
+    (function (marker,data) {
                 google.maps.event.addListener(marker, "click", function (e) {
-                    //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
+                    //Wraped the content inside an HTML DIV in order to set height and width of InfoWindow.
                   
-                    infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + marker.title + "</div>");
+                    infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + data + "</div>");
                     infoWindow.open(map, marker);
                 });
-            })(mark);
+            })(markers[i],apiData[i]);
         }
 
 }

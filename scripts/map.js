@@ -19,15 +19,15 @@ var Locations = [{
     name: "Jaigarh fort",
     lat: 26.9850925,
     lng: 75.8433988
-},{
+}, {
     name: "Hawa Mahal",
     lat: 26.9239411,
     lng: 75.8245498
-},{
+}, {
     name: "Jantar Mantar",
     lat: 26.9247668,
     lng: 75.822366
-},{
+}, {
     name: "Birla Mandir",
     lat: 26.8921657,
     lng: 75.8133356
@@ -48,45 +48,16 @@ var loadFailed = function() {
 }
 
 ////////////////////////////FETCH DATA USING FOURSQARE API////////////////
-var apiData = [];
-for (loca of Locations) {
-    fetch('https://api.foursquare.com/v2/venues/search?client_id=' +
-            'PVIQJ5PWWLE3UMRRNDZ3X1SWVFEHIXNRH12HCXEF0D0J5GOQ&' +
-            '&client_secret=YJ0TST4PGCM41UPONGMIEW2ZKOP04XAX2SJS' +
-            'MXGYI3DYMTEU&v=20161209' + '&ll=' + loca.lat + ',' +
-            loca.lng + '&query=\'' + loca.name + '\'&limit=1')
-        .then(
-            function(response) {
-                if (response.status !== 200) {
-                    console.log('Looks like there was a problem. Status Code: ' +
-                        response.status);
-                    return;
-                }
 
-                // Examine the text in the response  
-                response.json().then(function(data) {
-                    if (data.response.venues[0].contact.formattedPhone !== undefined) {
-                        apiData.push({
-                            name: data.response.venues[0].name,
-                            phone: data.response.venues[0].contact.formattedPhone,
-                            address: data.response.venues[0].location.formattedAddress
-                        });
-                    } else {
-                        apiData.push({
-                            name: data.response.venues[0].name,
-                            phone: "Phone number not available",
-                            address: data.response.venues[0].location.formattedAddress
-                        });
 
-                    }
-                });
+//for (loca of Locations) {
 
-            }
-        )
-}
+//}
 
-console.log(apiData);
-console.log(apiData[0]);
+//console.log(apiData)
+
+
+
 
 ////////////////////////Map////////////////////////
 function initMap() {
@@ -131,14 +102,41 @@ function initMap() {
     map.fitBounds(bounds);
 
     for (var i = 0; i < markers.length; i++) {
-        (function(marker, data) {
+        (function(marker,lc) {
             google.maps.event.addListener(marker, "click", function(e) {
                 //Wraped the content inside an HTML DIV in order to set height and width of InfoWindow.
+          
+                fetch('https://api.foursquare.com/v2/venues/search?client_id=' +
+                        'PVIQJ5PWWLE3UMRRNDZ3X1SWVFEHIXNRH12HCXEF0D0J5GOQ&' +
+                        '&client_secret=YJ0TST4PGCM41UPONGMIEW2ZKOP04XAX2SJS' +
+                        'MXGYI3DYMTEU&v=20161209' + '&ll=' + Locations[lc].lat + ',' +
+                        Locations[lc].lng + '&query=\'' + Locations[lc].name + '\'&limit=1')
+                    .then(
+                        function(response) {
+                            if (response.status !== 200) {
+                                console.log('Looks like there was a problem. Status Code: ' +
+                                    response.status);
+                                return;
+                            }
 
-                infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + marker.title + "</div>");
-                infoWindow.open(map, marker);
+                            // Examine the text in the response  
+                            response.json().then(function(data) {
+                                var data = data;
+                                if (data.response.venues[0].contact.formattedPhone !== undefined) {
+                                    infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + data.response.venues[0].contact.formattedPhone + "</div>");
+                                    infoWindow.open(map, marker);
+                                } else {
+                                    infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + "No phone" + "</div>");
+                                    infoWindow.open(map, marker);
+
+                                }
+                            });
+
+                        }
+                    )
+
             });
-        })(markers[i], apiData[i]);
+        })(markers[i],i);
     }
 
 }

@@ -1,41 +1,41 @@
 ///////////////////////MODEL/////////////////////////
 var Locations = [{
-    id :"id1",
+    id: "id1",
     name: "World Trade Park",
     lat: 26.8533341,
     lng: 75.802884
 }, {
-    id :"id2",
+    id: "id2",
     name: "Gorav Tower",
     lat: 26.855516,
     lng: 75.804736
 }, {
-    id : "id3",
+    id: "id3",
     name: "Pratap Plaza",
     lat: 26.8022738,
     lng: 75.8066552
 }, {
-    id : "id4",
+    id: "id4",
     name: "Amer fort",
     lat: 26.9854913,
     lng: 75.8491514
 }, {
-    id : "id5",
+    id: "id5",
     name: "Jaigarh fort",
     lat: 26.9850925,
     lng: 75.8433988
 }, {
-    id : "id6",
+    id: "id6",
     name: "Hawa Mahal",
     lat: 26.9239411,
     lng: 75.8245498
 }, {
-     id : "id7",
+    id: "id7",
     name: "Jantar Mantar",
     lat: 26.9247668,
     lng: 75.822366
 }, {
-    id : "id8",
+    id: "id8",
     name: "Birla Mandir",
     lat: 26.8921657,
     lng: 75.8133356
@@ -48,8 +48,8 @@ var ViewModel = function() {
 };
 
 var ids = [];
-for(let lo of Locations){
-   ids.push(lo.id);
+for (let lo of Locations) {
+    ids.push(lo.id);
 }
 
 ko.applyBindings(new ViewModel());
@@ -105,11 +105,14 @@ function initMap() {
     var callBack = function(marker, lc) {
         google.maps.event.addListener(marker, "click", function(e) {
             //Wraped the content inside an HTML DIV in order to set height and width of InfoWindow.
-          if (marker.getAnimation() !== null) {
-          marker.setAnimation(null);
-        } else {
-          marker.setAnimation(google.maps.Animation.BOUNCE);
-        }
+            if (marker.getAnimation() !== null) {
+                marker.setAnimation(null);
+            } else {
+                marker.setAnimation(google.maps.Animation.BOUNCE);
+                setTimeout(function() {
+                    marker.setAnimation(null);
+                }, 3000);
+            }
             fetch('https://api.foursquare.com/v2/venues/search?client_id=' +
                     'PVIQJ5PWWLE3UMRRNDZ3X1SWVFEHIXNRH12HCXEF0D0J5GOQ&' +
                     '&client_secret=YJ0TST4PGCM41UPONGMIEW2ZKOP04XAX2SJS' +
@@ -138,13 +141,13 @@ function initMap() {
 
                     }
                 ).catch(function(error) {
-                     alert('There has been a problem with your fetch operation: ' + error.message);
+                    alert('There has been a problem with your fetch operation: ' + error.message);
                 });
 
         });
-      document.getElementById(ids[lc]).addEventListener('click',function(){
-        google.maps.event.trigger(markers[lc], 'click');
-      }); 
+        document.getElementById(ids[lc]).addEventListener('click', function() {
+            google.maps.event.trigger(markers[lc], 'click');
+        });
     };
 
     for (var i = 0; i < markers.length; i++) {
@@ -152,5 +155,3 @@ function initMap() {
     }
 
 }
-
-

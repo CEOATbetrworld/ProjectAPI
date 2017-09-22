@@ -87,6 +87,7 @@ function initMap() {
         var marker = new google.maps.Marker({
             position: location,
             map: map,
+            animation: google.maps.Animation.DROP,
             title: loc.name
         });
         markers.push(marker);
@@ -104,7 +105,11 @@ function initMap() {
     var callBack = function(marker, lc) {
         google.maps.event.addListener(marker, "click", function(e) {
             //Wraped the content inside an HTML DIV in order to set height and width of InfoWindow.
-
+          if (marker.getAnimation() !== null) {
+          marker.setAnimation(null);
+        } else {
+          marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
             fetch('https://api.foursquare.com/v2/venues/search?client_id=' +
                     'PVIQJ5PWWLE3UMRRNDZ3X1SWVFEHIXNRH12HCXEF0D0J5GOQ&' +
                     '&client_secret=YJ0TST4PGCM41UPONGMIEW2ZKOP04XAX2SJS' +

@@ -61,7 +61,7 @@ function initMap() {
 
     var markers = [];
     var bounds = new google.maps.LatLngBounds();
-    
+
 
     for (let loc of Locations) {
 
@@ -88,46 +88,46 @@ function initMap() {
     map.fitBounds(bounds);
 
 
-    var callBack = function(marker,lc) {
-            google.maps.event.addListener(marker, "click", function(e) {
-                //Wraped the content inside an HTML DIV in order to set height and width of InfoWindow.
-          
-                fetch('https://api.foursquare.com/v2/venues/search?client_id=' +
-                        'PVIQJ5PWWLE3UMRRNDZ3X1SWVFEHIXNRH12HCXEF0D0J5GOQ&' +
-                        '&client_secret=YJ0TST4PGCM41UPONGMIEW2ZKOP04XAX2SJS' +
-                        'MXGYI3DYMTEU&v=20161209' + '&ll=' + Locations[lc].lat + ',' +
-                        Locations[lc].lng + '&query=\'' + Locations[lc].name + '\'&limit=1')
-                    .then(
-                        function(response) {
-                            if (response.status !== 200) {
-                                alert('Looks like there was a problem. Status Code: ' +
-                                    response.status);
-                                return;
-                            }
+    var callBack = function(marker, lc) {
+        google.maps.event.addListener(marker, "click", function(e) {
+            //Wraped the content inside an HTML DIV in order to set height and width of InfoWindow.
 
-                            // Examine the text in the response  
-                            response.json().then(function(data) {
-
-                                if (data.response.venues[0].location.formattedAddress !== undefined) {
-                                    infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + '<h6>'+"Address:"+'</h6>' + data.response.venues[0].location.formattedAddress.join() + "</div>");
-                                    infoWindow.open(map, marker);
-                                } else {
-                                    infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + '<h6>'+"Address:"+'</h6>' + "Address not available." + "</div>");
-                                    infoWindow.open(map, marker);
-
-                                }
-                            });
-
+            fetch('https://api.foursquare.com/v2/venues/search?client_id=' +
+                    'PVIQJ5PWWLE3UMRRNDZ3X1SWVFEHIXNRH12HCXEF0D0J5GOQ&' +
+                    '&client_secret=YJ0TST4PGCM41UPONGMIEW2ZKOP04XAX2SJS' +
+                    'MXGYI3DYMTEU&v=20161209' + '&ll=' + Locations[lc].lat + ',' +
+                    Locations[lc].lng + '&query=\'' + Locations[lc].name + '\'&limit=1')
+                .then(
+                    function(response) {
+                        if (response.status !== 200) {
+                            alert('Looks like there was a problem. Status Code: ' +
+                                response.status);
+                            return;
                         }
-                    ).catch(function(error) {
-  alert('There has been a problem with your fetch operation: ' + error.message);
-});
 
-         });  
-        }
+                        // Examine the text in the response  
+                        response.json().then(function(data) {
+
+                            if (data.response.venues[0].location.formattedAddress !== undefined) {
+                                infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + '<h6>' + "Address:" + '</h6>' + data.response.venues[0].location.formattedAddress.join() + "</div>");
+                                infoWindow.open(map, marker);
+                            } else {
+                                infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + '<h6>' + "Address:" + '</h6>' + "Address not available." + "</div>");
+                                infoWindow.open(map, marker);
+
+                            }
+                        });
+
+                    }
+                ).catch(function(error) {
+                    alert('There has been a problem with your fetch operation: ' + error.message);
+                });
+
+        });
+    }
 
     for (var i = 0; i < markers.length; i++) {
-       callBack(markers[i],i); 
+        callBack(markers[i], i);
     }
 
 }

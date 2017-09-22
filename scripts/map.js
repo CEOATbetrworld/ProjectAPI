@@ -124,7 +124,7 @@ function initMap() {
                 });
 
         });
-    }
+    };
 
     for (var i = 0; i < markers.length; i++) {
         callBack(markers[i], i);

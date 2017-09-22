@@ -2,6 +2,8 @@
 
 ### To test the app go to this [link](https://ceoatbetrworld.github.io/ProjectAPI/).
 
+### To test the app go locally just open index.html.
+
 Fun single page app shows you famous shopping mall and tourist place from in city jaipur. 
 
 

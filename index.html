@@ -15,8 +15,8 @@
     <div class="row">
         <div class="col-3">
             <h1>Places you would love to visit :)</h1>
-            <ul data-bind="foreach:locNames">
-                <li data-bind="text:name" class="list-group-item list-group-item-action"></li>
+            <ul data-bind="foreach:locNames" >
+                <li data-bind="text:name,attr: {id : id}" class="list-group-item list-group-item-action" id = "text:id"></li>
             </ul>
         </div>
         <div class="col-9" id="map">map wil be here</div>
@@ -24,7 +24,7 @@
 
     <script type="text/javascript" src="scripts/knockout-3.4.2.js"></script>
     <script type="text/javascript" src="scripts/map.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBwcX__5QM9FqC2-_lE5rL7gGkAPRvd598&callback=initMap" onerror="LoadFailed()"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBwcX__5QM9FqC2-_lE5rL7gGkAPRvd598&callback=initMap" onerror="loadFailed()"></script>
 </body>
 
 </html>

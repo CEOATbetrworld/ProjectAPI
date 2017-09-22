@@ -1,33 +1,41 @@
 ///////////////////////MODEL/////////////////////////
 var Locations = [{
+    id :"id1",
     name: "World Trade Park",
     lat: 26.8533341,
     lng: 75.802884
 }, {
+    id :"id2",
     name: "Gorav Tower",
     lat: 26.855516,
     lng: 75.804736
 }, {
+    id : "id3",
     name: "Pratap Plaza",
     lat: 26.8022738,
     lng: 75.8066552
 }, {
+    id : "id4",
     name: "Amer fort",
     lat: 26.9854913,
     lng: 75.8491514
 }, {
+    id : "id5",
     name: "Jaigarh fort",
     lat: 26.9850925,
     lng: 75.8433988
 }, {
+    id : "id6",
     name: "Hawa Mahal",
     lat: 26.9239411,
     lng: 75.8245498
 }, {
+     id : "id7",
     name: "Jantar Mantar",
     lat: 26.9247668,
     lng: 75.822366
 }, {
+    id : "id8",
     name: "Birla Mandir",
     lat: 26.8921657,
     lng: 75.8133356
@@ -38,6 +46,11 @@ var ViewModel = function() {
     this.locNames = ko.observableArray(Locations);
 
 };
+
+var ids = [];
+for(lo of Locations){
+   ids.push(lo.id);
+}
 
 ko.applyBindings(new ViewModel());
 
@@ -124,6 +137,9 @@ function initMap() {
                 });
 
         });
+      document.getElementById(ids[lc]).addEventListener('click',function(){
+        google.maps.event.trigger(markers[lc], 'click');
+      })  
     };
 
     for (var i = 0; i < markers.length; i++) {
@@ -131,3 +147,5 @@ function initMap() {
     }
 
 }
+
+

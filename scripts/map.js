@@ -114,7 +114,7 @@ function initMap() {
                     .then(
                         function(response) {
                             if (response.status !== 200) {
-                                console.log('Looks like there was a problem. Status Code: ' +
+                                alert('Looks like there was a problem. Status Code: ' +
                                     response.status);
                                 return;
                             }
@@ -133,9 +133,11 @@ function initMap() {
                             });
 
                         }
-                    )
+                    ).catch(function(error) {
+  alert('There has been a problem with your fetch operation: ' + error.message);
+});
 
-            });
+         });  
         })(markers[i],i);
     }
 

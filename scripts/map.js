@@ -47,18 +47,6 @@ var loadFailed = function() {
     alert("Failed to load Google Maps API without this, this web app is powerless :(");
 };
 
-////////////////////////////FETCH DATA USING FOURSQARE API////////////////
-
-
-//for (loca of Locations) {
-
-//}
-
-//console.log(apiData)
-
-
-
-
 ////////////////////////Map////////////////////////
 function initMap() {
 
@@ -99,8 +87,8 @@ function initMap() {
 
     map.fitBounds(bounds);
 
-    for (var i = 0; i < markers.length; i++) {
-        (function(marker,lc) {
+
+    var callBack = function(marker,lc) {
             google.maps.event.addListener(marker, "click", function(e) {
                 //Wraped the content inside an HTML DIV in order to set height and width of InfoWindow.
           
@@ -136,7 +124,10 @@ function initMap() {
 });
 
          });  
-        })(markers[i],i);
+        }
+
+    for (var i = 0; i < markers.length; i++) {
+       callBack(markers[i],i); 
     }
 
 }

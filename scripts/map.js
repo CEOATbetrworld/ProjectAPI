@@ -37,7 +37,7 @@ var ViewModel = function() {
 
     this.locNames = ko.observableArray(Locations);
 
-}
+};
 
 ko.applyBindings(new ViewModel());
 
@@ -45,7 +45,7 @@ ko.applyBindings(new ViewModel());
 
 var loadFailed = function() {
     alert("Failed to load Google Maps API without this, this web app is powerless :(");
-}
+};
 
 ////////////////////////////FETCH DATA USING FOURSQARE API////////////////
 
@@ -73,9 +73,7 @@ function initMap() {
 
     var markers = [];
     var bounds = new google.maps.LatLngBounds();
-    var infoWindow = new google.maps.InfoWindow({
-
-    });
+    
 
     for (let loc of Locations) {
 
@@ -121,7 +119,7 @@ function initMap() {
 
                             // Examine the text in the response  
                             response.json().then(function(data) {
-                                var data = data;
+
                                 if (data.response.venues[0].location.formattedAddress !== undefined) {
                                     infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + '<h6>'+"Address:"+'</h6>' + data.response.venues[0].location.formattedAddress.join() + "</div>");
                                     infoWindow.open(map, marker);

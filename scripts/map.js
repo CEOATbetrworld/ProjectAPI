@@ -120,7 +120,7 @@ function initMap() {
 
                     }
                 ).catch(function(error) {
-                    alert('There has been a problem with your fetch operation: ' + error.message);
+                     alert('There has been a problem with your fetch operation: ' + error.message);
                 });
 
         });

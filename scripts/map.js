@@ -48,7 +48,7 @@ var ViewModel = function() {
 };
 
 var ids = [];
-for(lo of Locations){
+for(let lo of Locations){
    ids.push(lo.id);
 }
 
@@ -139,7 +139,7 @@ function initMap() {
         });
       document.getElementById(ids[lc]).addEventListener('click',function(){
         google.maps.event.trigger(markers[lc], 'click');
-      })  
+      }); 
     };
 
     for (var i = 0; i < markers.length; i++) {

@@ -122,11 +122,11 @@ function initMap() {
                             // Examine the text in the response  
                             response.json().then(function(data) {
                                 var data = data;
-                                if (data.response.venues[0].contact.formattedPhone !== undefined) {
-                                    infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + data.response.venues[0].contact.formattedPhone + "</div>");
+                                if (data.response.venues[0].location.formattedAddress !== undefined) {
+                                    infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + '<h6>'+"Address:"+'</h6>' + data.response.venues[0].location.formattedAddress.join() + "</div>");
                                     infoWindow.open(map, marker);
                                 } else {
-                                    infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + "No phone" + "</div>");
+                                    infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + '<h6>'+"Address:"+'</h6>' + "Address not available." + "</div>");
                                     infoWindow.open(map, marker);
 
                                 }

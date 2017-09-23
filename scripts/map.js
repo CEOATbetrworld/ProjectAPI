@@ -1,4 +1,5 @@
 ///////////////////////MODEL/////////////////////////
+function makeGlobal(){
 var Locations = [{
   id: 0,
   name: "World Trade Park",
@@ -81,11 +82,14 @@ var loadFailed = function() {
 };
 
 ////////////////////////Map////////////////////////
+//////////////Declared in global scope
+var infoWindow = new google.maps.InfoWindow({
+
+    });
 
 
 
 
-function initMap() {
 
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 4,
@@ -99,9 +103,7 @@ function initMap() {
   var markers = [];
   var bounds = new google.maps.LatLngBounds();
  
-var infoWindow = new google.maps.InfoWindow({
 
-    });
 
 
 
@@ -194,5 +196,6 @@ var infoWindow = new google.maps.InfoWindow({
   for (var i = 0; i < markers.length; i++) {
     callBack(markers[i], i);
   }
+
 
 }

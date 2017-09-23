@@ -96,6 +96,10 @@ function initMap() {
 
     }
 
+    google.maps.event.addDomListener(window, 'resize', function() {
+  map.fitBounds(bounds); // `bounds` is a `LatLngBounds` object
+});
+
     map.fitBounds(bounds);
 
     function setMapOnAll(map) {
@@ -150,8 +154,6 @@ function initMap() {
 
         });
         this.show = function(lc) {
-            setMapOnAll(null);
-            markers[lc].setMap(map);
             google.maps.event.trigger(markers[lc], 'click');
         };
     };

@@ -70,7 +70,7 @@ var ViewModel = function() {
 
 
 
-var viewModel = new ViewModel()
+var viewModel = new ViewModel();
 
 ko.applyBindings(viewModel);
 

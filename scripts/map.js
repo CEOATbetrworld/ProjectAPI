@@ -1,41 +1,41 @@
 ///////////////////////MODEL/////////////////////////
 var Locations = [{
-    id: "id1",
+    id: 0,
     name: "World Trade Park",
     lat: 26.8533341,
-    lng: 75.802884
+    lng: 75.802884  
 }, {
-    id: "id2",
+    id: 1,
     name: "Gorav Tower",
     lat: 26.855516,
     lng: 75.804736
 }, {
-    id: "id3",
+    id: 2,
     name: "Pratap Plaza",
     lat: 26.8022738,
     lng: 75.8066552
 }, {
-    id: "id4",
+    id: 3,
     name: "Amer fort",
     lat: 26.9854913,
     lng: 75.8491514
 }, {
-    id: "id5",
+    id: 4,
     name: "Jaigarh fort",
     lat: 26.9850925,
     lng: 75.8433988
 }, {
-    id: "id6",
+    id: 5,
     name: "Hawa Mahal",
     lat: 26.9239411,
     lng: 75.8245498
 }, {
-    id: "id7",
+    id: 6,
     name: "Jantar Mantar",
     lat: 26.9247668,
     lng: 75.822366
 }, {
-    id: "id8",
+    id: 7,
     name: "Birla Mandir",
     lat: 26.8921657,
     lng: 75.8133356
@@ -43,14 +43,11 @@ var Locations = [{
 
 var ViewModel = function() {
 
-    this.locNames = ko.observableArray(Locations);
-
+    locNames = ko.observableArray(Locations);
+    showit = function(lc){
+        show(lc);
+    }
 };
-
-var ids = [];
-for (let lo of Locations) {
-    ids.push(lo.id);
-}
 
 ko.applyBindings(new ViewModel());
 
@@ -152,11 +149,11 @@ function initMap() {
                 });
 
         });
-        document.getElementById(ids[lc]).addEventListener('click', function() {
+        this.show = function(lc) {
             setMapOnAll(null);
             markers[lc].setMap(map);
             google.maps.event.trigger(markers[lc], 'click');
-        });
+        };
     };
 
     for (var i = 0; i < markers.length; i++) {

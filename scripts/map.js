@@ -1,5 +1,5 @@
 ///////////////////////MODEL/////////////////////////
-function makeGlobal(){
+
 var Locations = [{
   id: 0,
   name: "World Trade Park",
@@ -82,6 +82,7 @@ var loadFailed = function() {
 };
 
 ////////////////////////Map////////////////////////
+function makeGlobal(){
 //////////////Declared in global scope
 var infoWindow = new google.maps.InfoWindow({
 

@@ -101,6 +101,13 @@ function initMap() {
 
     map.fitBounds(bounds);
 
+    function setMapOnAll(map) {
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(map);
+        }
+    }
+
+
 
     var callBack = function(marker, lc) {
         google.maps.event.addListener(marker, "click", function(e) {
@@ -146,8 +153,14 @@ function initMap() {
 
         });
         document.getElementById(ids[lc]).addEventListener('click', function() {
+            setMapOnAll(null);
+            markers[lc].setMap(map);
             google.maps.event.trigger(markers[lc], 'click');
         });
+        document.getElementById("showAll").addEventListener('click', function() {
+            setMapOnAll(map);
+        });
+
     };
 
     for (var i = 0; i < markers.length; i++) {

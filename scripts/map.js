@@ -3,7 +3,7 @@ var Locations = [{
     id: 0,
     name: "World Trade Park",
     lat: 26.8533341,
-    lng: 75.802884  
+    lng: 75.802884
 }, {
     id: 1,
     name: "Gorav Tower",
@@ -44,7 +44,7 @@ var Locations = [{
 var ViewModel = function() {
 
     locNames = ko.observableArray(Locations);
-    showit = function(lc){
+    showit = function(lc) {
         show(lc);
     }
 };

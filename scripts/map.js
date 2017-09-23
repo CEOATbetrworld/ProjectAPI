@@ -137,15 +137,7 @@ var infoWindow = new google.maps.InfoWindow({
   });
 
   map.fitBounds(bounds);
-
-  function setMapOnAll(map) {
-    for (var i = 0; i < markers.length; i++) {
-      markers[i].setMap(map);
-    }
-  }
-
-
-
+  
   var callBack = function(marker, lc) {
     google.maps.event.addListener(marker, "click", function(e) {
       //Wraped the content inside an HTML DIV in order to set height and width of InfoWindow.

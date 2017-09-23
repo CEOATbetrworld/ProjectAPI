@@ -46,7 +46,7 @@ var ViewModel = function() {
     locNames = ko.observableArray(Locations);
     showit = function(lc) {
         show(lc);
-    }
+    };
 };
 
 ko.applyBindings(new ViewModel());

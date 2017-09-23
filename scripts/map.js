@@ -41,15 +41,26 @@ var Locations = [{
     lng: 75.8133356
 }];
 
-var ViewModel = function() {
-
+var viewModel = function() {
     locNames = ko.observableArray(Locations);
     showit = function(lc) {
         show(lc);
     };
+
+   Query = ko.observable('');
+
+   locNames = ko.computed(function() {
+    var q = Query();
+    
+    return locNames().filter(function(i) {
+      return i.name.toLowerCase().indexOf(q) >= 0;
+    });});
+
 };
 
-ko.applyBindings(new ViewModel());
+
+
+ko.applyBindings(new viewModel());
 
 ///////////////ERROR HANDLING FOR MAP API////////////////
 

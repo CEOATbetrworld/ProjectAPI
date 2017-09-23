@@ -82,10 +82,6 @@ var loadFailed = function() {
 
 ////////////////////////Map////////////////////////
 
-//declared in global scope
-var infoWindow = new google.maps.InfoWindow({
-
-    });
 
 
 
@@ -102,6 +98,11 @@ function initMap() {
 
   var markers = [];
   var bounds = new google.maps.LatLngBounds();
+  //declared in global scope
+var infoWindow = new google.maps.InfoWindow({
+
+    });
+
 
 
   Locations.forEach(function(loc, i) {

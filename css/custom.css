@@ -1,14 +1,19 @@
+@media screen and (min-width: 768px) {
+
 .list{
 	width:20vw;
 }
 
-.gmap{
+#map{
 	width:80vw;
+	height:100vh;
 	display: block;
 }
+}
 
-@media screen and (max-width: 736px) {
+@media screen and (max-width: 768px) {
 #map{
 	height: 50vh;
+	width: 100vw;
 }
 }

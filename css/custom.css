@@ -1,4 +1,4 @@
-html{
+html {
 	background-color: #CBE32D
 }
 .wrapper {
@@ -13,11 +13,8 @@ html{
 	font-family: 'Playfair Display', serif;
 }
 
-.content{
-	height: 100vh;
-}
 
-.searchBar{
+.searchBar { 
 	width: 28vw;
 }
 
@@ -30,11 +27,12 @@ html{
 
 }
 
-.list{
+.list {
 	font-family: 'Playfair Display', serif;
 }
 
-.content{
-	height: 50vh;
+
+.searchBar {
+   width: 95vw;
 }
 }

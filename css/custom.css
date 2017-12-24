@@ -1,19 +1,17 @@
-@media screen and (min-width: 768px) {
 
-.list{
-	width:20vw;
-}
+.wrapper {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	grid-template-rows: 40px 100px 40px;
 
-#map{
-	width:80vw;
-	height:100vh;
-	display: block;
-}
 }
 
-@media screen and (max-width: 768px) {
-#map{
-	height: 50vh;
-	width: 100vw;
+.menu{
+	grid-column: span 3;
+	font-family: 'Playfair Display', serif;
 }
+
+.content{
+	grid-column: span 9;
+	height: 100vh;
 }

@@ -92,7 +92,7 @@ var infoWindow = new google.maps.InfoWindow({
 
 
 
-  var map = new google.maps.Map(document.getElementById('map'), {
+  var map = new google.maps.Map(document.getElementsByClassName('content')[0], {
     zoom: 4,
     center: {
       lat: 26.9124,

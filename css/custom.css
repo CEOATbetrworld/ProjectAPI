@@ -1,17 +1,40 @@
-
+html{
+	background-color: #CBE32D
+}
 .wrapper {
 	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-	grid-template-rows: 40px 100px 40px;
+	grid-template-columns: 30vw 70vw;
+	grid-template-rows: 100vh;
 
 }
 
-.menu{
-	grid-column: span 3;
+.list {
+
 	font-family: 'Playfair Display', serif;
 }
 
 .content{
-	grid-column: span 9;
 	height: 100vh;
+}
+
+.searchBar{
+	width: 28vw;
+}
+
+@media screen and (max-width: 768px){
+
+.wrapper {
+	display: grid;
+	grid-template-columns:100vw;
+	grid-template-rows: 50vh 50vh;
+
+}
+
+.list{
+	font-family: 'Playfair Display', serif;
+}
+
+.content{
+	height: 50vh;
+}
 }

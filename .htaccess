@@ -1,6 +1,5 @@
 <IfModule mod_headers.c>
-# WEEK
 <FilesMatch "\.(css|jpg|jpeg|js|png|gif|woff|swf)$">
-    Header set Cache-Control "max-age=604800, public"
+    Header set Cache-Control "max-age=600, public"
 </FilesMatch>
 </IfModule>﻿

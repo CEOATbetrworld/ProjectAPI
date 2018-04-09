@@ -42,28 +42,28 @@ var Locations = [{
   lng: 75.8133356
 }];
 
-var ViewModel = function() {
+var ViewModel = function () {
   var self = this;
 
   this.locNames = ko.observableArray(Locations);
-  showit = function(lc) {
+  showit = function (lc) {
     show(lc);
   };
 
   this.query = ko.observable('');
 
-  this.filteredLocNames = ko.computed(function() {
+  this.filteredLocNames = ko.computed(function () {
     var q = self.query();
 
-    return self.locNames().filter(function(i) {
+    return self.locNames().filter(function (i) {
 
-      var itMatches = i.name.toLowerCase().indexOf(q) >= 0; 
+      var itMatches = i.name.toLowerCase().indexOf(q) >= 0;
 
       if (i.marker) {
-         i.marker.setVisible(itMatches);
+        i.marker.setVisible(itMatches);
       }
 
-      return itMatches; 
+      return itMatches;
     });
   });
 
@@ -77,16 +77,16 @@ ko.applyBindings(viewModel);
 
 ///////////////ERROR HANDLING FOR MAP API////////////////
 
-var loadFailed = function() {
+var loadFailed = function () {
   alert("Failed to load Google Maps API without this, this web app is powerless :(");
 };
 
 ////////////////////////Map////////////////////////
-function makeGlobal(){
-//////////////Declared in global scope
-var infoWindow = new google.maps.InfoWindow({
+function makeGlobal() {
+  //////////////Declared in global scope
+  var infoWindow = new google.maps.InfoWindow({
 
-    });
+  });
 
 
 
@@ -103,12 +103,12 @@ var infoWindow = new google.maps.InfoWindow({
 
   var markers = [];
   var bounds = new google.maps.LatLngBounds();
- 
 
 
 
 
-  Locations.forEach(function(loc, i) {
+
+  Locations.forEach(function (loc, i) {
 
     var myLatLng = new google.maps.LatLng(loc.lat, loc.lng);
     var location = {
@@ -128,34 +128,34 @@ var infoWindow = new google.maps.InfoWindow({
     markers.push(marker);
     bounds.extend(myLatLng);
 
-    
+
 
   });
 
-  google.maps.event.addDomListener(window, 'resize', function() {
+  google.maps.event.addDomListener(window, 'resize', function () {
     map.fitBounds(bounds); // `bounds` is a `LatLngBounds` object
   });
 
   map.fitBounds(bounds);
-  
-  var callBack = function(marker, lc) {
-    google.maps.event.addListener(marker, "click", function(e) {
+
+  var callBack = function (marker, lc) {
+    google.maps.event.addListener(marker, "click", function (e) {
       //Wraped the content inside an HTML DIV in order to set height and width of InfoWindow.
       if (marker.getAnimation() !== null) {
         marker.setAnimation(null);
       } else {
         marker.setAnimation(google.maps.Animation.BOUNCE);
-        setTimeout(function() {
+        setTimeout(function () {
           marker.setAnimation(null);
         }, 3000);
       }
       fetch('https://api.foursquare.com/v2/venues/search?client_id=' +
-          'PVIQJ5PWWLE3UMRRNDZ3X1SWVFEHIXNRH12HCXEF0D0J5GOQ&' +
-          '&client_secret=YJ0TST4PGCM41UPONGMIEW2ZKOP04XAX2SJS' +
-          'MXGYI3DYMTEU&v=20161209' + '&ll=' + Locations[lc].lat + ',' +
-          Locations[lc].lng + '&query=\'' + Locations[lc].name + '\'&limit=1')
+        'PVIQJ5PWWLE3UMRRNDZ3X1SWVFEHIXNRH12HCXEF0D0J5GOQ&' +
+        '&client_secret=YJ0TST4PGCM41UPONGMIEW2ZKOP04XAX2SJS' +
+        'MXGYI3DYMTEU&v=20161209' + '&ll=' + Locations[lc].lat + ',' +
+        Locations[lc].lng + '&query=\'' + Locations[lc].name + '\'&limit=1')
         .then(
-          function(response) {
+          function (response) {
             if (response.status !== 200) {
               alert('Looks like there was a problem. Status Code: ' +
                 response.status);
@@ -163,7 +163,7 @@ var infoWindow = new google.maps.InfoWindow({
             }
 
             // Examine the text in the response  
-            response.json().then(function(data) {
+            response.json().then(function (data) {
 
               if (data.response.venues[0].location.formattedAddress !== undefined) {
                 infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + '<h6>' + "Address:" + '</h6>' + data.response.venues[0].location.formattedAddress.join() + "</div>");
@@ -176,12 +176,12 @@ var infoWindow = new google.maps.InfoWindow({
             });
 
           }
-        ).catch(function(error) {
+        ).catch(function (error) {
           alert('There has been a problem with your fetch operation: ' + error.message);
         });
 
     });
-    this.show = function(lc) {
+    this.show = function (lc) {
       google.maps.event.trigger(markers[lc], 'click');
     };
   };

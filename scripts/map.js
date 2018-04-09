@@ -150,8 +150,8 @@ function makeGlobal() {
         }, 3000);
       }
       fetch('https://api.foursquare.com/v2/venues/search?client_id=' +
-        'PVIQJ5PWWLE3UMRRNDZ3X1SWVFEHIXNRH12HCXEF0D0J5GOQ&' +
-        '&client_secret=YJ0TST4PGCM41UPONGMIEW2ZKOP04XAX2SJS' +
+        '4ZUMADF2SHRKLWPG1BTNJCD5QAIQMIGOTUN5VLKTEXKFDD52' +
+        '&client_secret=1K5XQUWKNQ5BO5WEQ3FUTPB53FW0SP2N04NMTJGVU00Q1DST' +
         'MXGYI3DYMTEU&v=20161209' + '&ll=' + Locations[lc].lat + ',' +
         Locations[lc].lng + '&query=\'' + Locations[lc].name + '\'&limit=1')
         .then(

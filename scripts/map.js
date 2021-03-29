@@ -1,46 +1,43 @@
 ///////////////////////MODEL/////////////////////////
 
 var Locations = [{
-  id: 0,
-  name: "World Trade Park",
-  lat: 26.8533341,
-  lng: 75.802884
-}, {
-  id: 1,
-  name: "Gorav Tower",
-  lat: 26.855516,
-  lng: 75.804736
-}, {
-  id: 2,
-  name: "Pratap Plaza",
-  lat: 26.8022738,
-  lng: 75.8066552
-}, {
-  id: 3,
-  name: "Amer fort",
-  lat: 26.9854913,
-  lng: 75.8491514
-}, {
-  id: 4,
-  name: "Jaigarh fort",
-  lat: 26.9850925,
-  lng: 75.8433988
-}, {
-  id: 5,
-  name: "Hawa Mahal",
-  lat: 26.9239411,
-  lng: 75.8245498
-}, {
-  id: 6,
-  name: "Jantar Mantar",
-  lat: 26.9247668,
-  lng: 75.822366
-}, {
-  id: 7,
-  name: "Birla Mandir",
-  lat: 26.8921657,
-  lng: 75.8133356
-}];
+    id: 0,
+    name: "World Trade Park",
+    lat: 26.8533341,
+    lng: 75.802884
+  }, {
+    id: 1,
+    name: "Gorav Tower",
+    lat: 26.855516,
+    lng: 75.804736
+  },
+  {
+    id: 3,
+    name: "Amer fort",
+    lat: 26.9854913,
+    lng: 75.8491514
+  }, {
+    id: 4,
+    name: "Jaigarh fort",
+    lat: 26.9850925,
+    lng: 75.8433988
+  }, {
+    id: 5,
+    name: "Hawa Mahal",
+    lat: 26.9239411,
+    lng: 75.8245498
+  }, {
+    id: 6,
+    name: "Jantar Mantar",
+    lat: 26.9247668,
+    lng: 75.822366
+  }, {
+    id: 7,
+    name: "Birla Mandir",
+    lat: 26.8921657,
+    lng: 75.8133356
+  }
+];
 
 var ViewModel = function () {
   var self = this;
@@ -150,10 +147,10 @@ function makeGlobal() {
         }, 3000);
       }
       fetch('https://api.foursquare.com/v2/venues/search?client_id=' +
-        '4ZUMADF2SHRKLWPG1BTNJCD5QAIQMIGOTUN5VLKTEXKFDD52' +
-        '&client_secret=1K5XQUWKNQ5BO5WEQ3FUTPB53FW0SP2N04NMTJGVU00Q1DST' +
-        '&v=20161209' + '&ll=' + Locations[lc].lat + ',' +
-        Locations[lc].lng + '&query=\'' + Locations[lc].name + '\'&limit=1')
+          '4ZUMADF2SHRKLWPG1BTNJCD5QAIQMIGOTUN5VLKTEXKFDD52' +
+          '&client_secret=1K5XQUWKNQ5BO5WEQ3FUTPB53FW0SP2N04NMTJGVU00Q1DST' +
+          '&v=20161209' + '&ll=' + Locations[lc].lat + ',' +
+          Locations[lc].lng + '&query=\'' + Locations[lc].name + '\'&limit=1')
         .then(
           function (response) {
             if (response.status !== 200) {
